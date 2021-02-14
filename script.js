@@ -12,18 +12,35 @@ const mouse = {
     x: null,
     y: null,
 }
+
 canvas.addEventListener('click', function(event){
     mouse.x = event.x;
     mouse.y = event.y;
     ctx.fillStyle = 'red';
-ctx.strokeStyle = 'red';
-ctx.beginPath();
-ctx.arc(mouse.x, mouse.y, 50, 0, Math.PI * 2);
-ctx.stroke();
 })
 
-// ctx.fillStyle = 'red';
-// ctx.strokeStyle = 'red';
-// ctx.beginPath();
-// ctx.arc(mouse.x, mouse.y, 50, 0, Math.PI * 2);
-// ctx.stroke();
+function drawCircle(){
+    ctx.strokeStyle = 'red';
+    ctx.beginPath();
+    ctx.arc(mouse.x, mouse.y, 50, 0, Math.PI * 2);
+    ctx.stroke();
+}
+
+function drawBlueCircle(){
+    ctx.strokeStyle = 'blue';
+    ctx.beginPath();
+    ctx.arc(mouse.x, mouse.y, 50, 0, Math.PI * 2);
+    ctx.stroke();
+}
+
+canvas.addEventListener('mousemove', function(event){
+    mouse.x = event.x;
+    mouse.y = event.y;
+})
+
+function animate(){
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawCircle()
+    requestAnimationFrame(animate);
+}
+animate();
