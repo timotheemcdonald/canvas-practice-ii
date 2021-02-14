@@ -2,6 +2,7 @@ const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
+particlesArray = [];
 
 window.addEventListener('resize', function(){
     canvas.width = window.innerWidth;
@@ -45,8 +46,23 @@ class Particle{
     }
 }
 
+function initParticles(){
+    for(let i = 0; i < 100; i++){
+        particlesArray.push(new Particle());
+    }
+}
+initParticles();
+
+function handleParticles(){
+    for(let i = 0; i < particlesArray.length; i++){
+        particlesArray[i].update();
+        particlesArray[i].draw();
+    }
+}
+
 function animate(){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    handleParticles();
     requestAnimationFrame(animate);
 }
 animate();
