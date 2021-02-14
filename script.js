@@ -8,8 +8,22 @@ window.addEventListener('resize', function(){
     canvas.height = window.innerHeight;
 })
 
-ctx.fillStyle = 'red';
+const mouse = {
+    x: null,
+    y: null,
+}
+canvas.addEventListener('click', function(event){
+    mouse.x = event.x;
+    mouse.y = event.y;
+    ctx.fillStyle = 'red';
 ctx.strokeStyle = 'red';
 ctx.beginPath();
-ctx.arc(100, 100, 50, 0, Math.PI * 2);
+ctx.arc(mouse.x, mouse.y, 50, 0, Math.PI * 2);
 ctx.stroke();
+})
+
+// ctx.fillStyle = 'red';
+// ctx.strokeStyle = 'red';
+// ctx.beginPath();
+// ctx.arc(mouse.x, mouse.y, 50, 0, Math.PI * 2);
+// ctx.stroke();
