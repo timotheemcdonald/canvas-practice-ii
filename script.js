@@ -19,28 +19,34 @@ canvas.addEventListener('click', function(event){
     ctx.fillStyle = 'red';
 })
 
-function drawCircle(){
-    ctx.strokeStyle = 'red';
-    ctx.beginPath();
-    ctx.arc(mouse.x, mouse.y, 50, 0, Math.PI * 2);
-    ctx.stroke();
-}
-
-function drawBlueCircle(){
-    ctx.strokeStyle = 'blue';
-    ctx.beginPath();
-    ctx.arc(mouse.x, mouse.y, 50, 0, Math.PI * 2);
-    ctx.stroke();
-}
 
 canvas.addEventListener('mousemove', function(event){
     mouse.x = event.x;
     mouse.y = event.y;
 })
 
+class Particle{
+    constructor(){
+        this.x = mouse.x;
+        this.y = mouse.y;
+        this.size = Math.random() * 5 + 1;
+        this.speedX = Math.random() * 3 - 1.5;
+        this.speedY = Math.random() * 3 - 1.5;
+    }
+    update(){
+        this.x += this.speedX;
+        this.y += this.speedY;
+    }
+    draw(){
+        ctx.fillStyle = 'blue';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, 50, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+
 function animate(){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawCircle()
     requestAnimationFrame(animate);
 }
 animate();
